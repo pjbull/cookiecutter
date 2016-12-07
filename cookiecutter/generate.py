@@ -181,7 +181,7 @@ def generate_file(project_dir, infile, context, env):
 
 
 def render_and_create_dir(dirname, context, output_dir, environment,
-                          overwrite_if_exists=False):
+                          overwrite_if_exists=False, symlink=None):
     """Render name of a directory, create the directory, return its path."""
     name_tmpl = environment.from_string(dirname)
     rendered_dirname = name_tmpl.render(**context)
@@ -208,7 +208,19 @@ def render_and_create_dir(dirname, context, output_dir, environment,
             msg = 'Error: "{}" directory already exists'.format(dir_to_create)
             raise OutputDirExistsException(msg)
 
-    make_sure_path_exists(dir_to_create)
+    if symlink is not None:
+        link_tmpl = environment.from_string(symlink)
+        rendered_link = link_tmpl.render(**context)
+
+        logger.debug('Creating symlink from {} to {}'.format(
+            dir_to_create,
+            rendered_link
+        ))
+
+        os.symlink(rendered_link, dir_to_create)
+    else:
+        make_sure_path_exists(dir_to_create)
+
     return dir_to_create
 
 
@@ -293,9 +305,15 @@ def generate_files(repo_dir, context=None, output_dir='.',
             # unrendered directories, since they will just be copied.
             copy_dirs = []
             render_dirs = []
+            symlinks = dict()
 
             for d in dirs:
                 d_ = os.path.normpath(os.path.join(root, d))
+
+                if os.path.islink(d_):
+                    logger.debug('Processing symlink at {}...'.format(d))
+                    symlinks[d] = os.readlink(d_)
+
                 # We check the full path, because that's how it can be
                 # specified in the ``_copy_without_render`` setting, but
                 # we store just the dir name
@@ -311,7 +329,7 @@ def generate_files(repo_dir, context=None, output_dir='.',
                     'Copying dir {} to {} without rendering'
                     ''.format(indir, outdir)
                 )
-                shutil.copytree(indir, outdir)
+                shutil.copytree(indir, outdir, symlinks=True)
 
             # We mutate ``dirs``, because we only want to go through these dirs
             # recursively
@@ -324,7 +342,8 @@ def generate_files(repo_dir, context=None, output_dir='.',
                         context,
                         output_dir,
                         env,
-                        overwrite_if_exists
+                        overwrite_if_exists,
+                        symlink=symlinks.get(d, None)
                     )
                 except UndefinedError as err:
                     rmtree(project_dir)
