@@ -9,6 +9,7 @@ import json
 import logging
 import os
 import shutil
+import sys
 
 from jinja2 import FileSystemLoader
 from cookiecutter.environment import StrictEnvironment
@@ -25,6 +26,18 @@ from .exceptions import (
 from .find import find_template
 from .utils import make_sure_path_exists, work_in, rmtree
 from .hooks import run_hook
+
+if sys.platform.startswith('win') and sys.version_info < (3, 2):
+    # these functions don't work in Windows until Python 3.2
+    # so we need to fallback to the ctype implementations
+    from .win_utils import islink, readlink
+    from .win_utils import symlink as create_symlink
+    from .win_utils import copytree
+else:
+    from os.path import islink
+    from os import readlink
+    from os import symlink as create_symlink
+    from shutil import copytree
 
 logger = logging.getLogger(__name__)
 
@@ -217,7 +230,7 @@ def render_and_create_dir(dirname, context, output_dir, environment,
             rendered_link
         ))
 
-        os.symlink(rendered_link, dir_to_create)
+        create_symlink(rendered_link, dir_to_create)
     else:
         make_sure_path_exists(dir_to_create)
 
@@ -304,9 +317,9 @@ def generate_files(repo_dir, context=None, output_dir='.',
             for d in dirs:
                 d_ = os.path.normpath(os.path.join(root, d))
 
-                if os.path.islink(d_):
+                if islink(d_):
                     logger.debug('Processing symlink at {}...'.format(d))
-                    symlinks[d] = os.readlink(d_)
+                    symlinks[d] = readlink(d_)
 
                 # We check the full path, because that's how it can be
                 # specified in the ``_copy_without_render`` setting, but
@@ -323,7 +336,7 @@ def generate_files(repo_dir, context=None, output_dir='.',
                     'Copying dir {} to {} without rendering'
                     ''.format(indir, outdir)
                 )
-                shutil.copytree(indir, outdir, symlinks=True)
+                copytree(indir, outdir, symlinks=True)
 
             # We mutate ``dirs``, because we only want to go through these dirs
             # recursively

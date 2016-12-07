@@ -67,3 +67,16 @@ def test_workin():
     # Make sure that exceptions are still bubbled up
     with pytest.raises(TestException):
         test_work_in()
+
+
+def test_windows_error_reraised():
+    if sys.platform.startswith('win'):
+        def win_error_reraise():
+            root = os.path.abspath(os.sep)
+            # can't remove root on Windows, but path exists
+            utils.force_delete(os.remove, root, None)
+
+        with pytest.raises(WindowsError):
+            win_error_reraise()
+    else:
+        pass

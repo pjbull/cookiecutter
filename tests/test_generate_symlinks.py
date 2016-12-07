@@ -8,9 +8,16 @@ test_generate_symlinks
 from __future__ import unicode_literals
 import os
 import pytest
+import sys
 
 from cookiecutter import generate
 from cookiecutter import utils
+
+if sys.platform.startswith('win') and sys.version_info < (3, 2):
+    from cookiecutter.win_utils import islink, readlink
+else:
+    from os.path import islink
+    from os import readlink
 
 TEST_OUTPUT_DIR = 'test_symlinks'
 
@@ -27,7 +34,7 @@ def remove_test_dir(request):
 
 
 @pytest.mark.usefixtures('clean_system', 'remove_test_dir')
-def test_generate_copy_without_render_extensions():
+def test_generate_symlinks():
     generate.generate_files(
         context={
             'cookiecutter': {
@@ -54,9 +61,9 @@ def test_generate_copy_without_render_extensions():
 
     # Test links that have been rendered and copied
     def _test_symlink(root, link, points_to):
-        assert os.path.islink(os.path.join(root, link))
+        assert islink(os.path.join(root, link))
 
-        actual_points_to = os.readlink(os.path.join(root, link))
+        actual_points_to = readlink(os.path.join(root, link))
 
         if actual_points_to.endswith(os.sep):
             actual_points_to = actual_points_to[:-1]

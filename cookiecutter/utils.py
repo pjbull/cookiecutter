@@ -12,8 +12,9 @@ import contextlib
 import errno
 import logging
 import os
-import stat
 import shutil
+import stat
+
 
 logger = logging.getLogger(__name__)
 
@@ -25,8 +26,19 @@ def force_delete(func, path, exc_info):
     From stackoverflow.com/questions/1889597
     """
 
-    os.chmod(path, stat.S_IWRITE)
-    func(path)
+    # test for path because of timing on windows
+    # http://stackoverflow.com/a/38949679
+    if os.path.exists(path):
+        try:
+            os.chmod(path, stat.S_IWRITE)
+            func(path)
+        except WindowsError as e:
+            # symlinks that don't point to something need to be removed
+            # with rmdir
+            if e.errno == 2:
+                os.rmdir(path)
+            else:
+                raise
 
 
 def rmtree(path):
