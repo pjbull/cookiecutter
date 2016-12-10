@@ -16,6 +16,10 @@ from cookiecutter.environment import StrictEnvironment
 from jinja2.exceptions import TemplateSyntaxError, UndefinedError
 from binaryornot.check import is_binary
 
+if sys.platform.startswith('win') and sys.version_info < (3, 2):
+    import jaraco.windows.filesystem as fs
+    fs.patch_os_module()
+
 from .exceptions import (
     NonTemplatedInputDirException,
     ContextDecodingException,

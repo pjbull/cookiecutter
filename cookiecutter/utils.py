@@ -25,20 +25,11 @@ def force_delete(func, path, exc_info):
     Usage: `shutil.rmtree(path, onerror=force_delete)`
     From stackoverflow.com/questions/1889597
     """
-
-    # test for path because of timing on windows
-    # http://stackoverflow.com/a/38949679
-    if os.path.exists(path):
-        try:
-            os.chmod(path, stat.S_IWRITE)
-            func(path)
-        except WindowsError as e:
-            # symlinks that don't point to something need to be removed
-            # with rmdir
-            if e.errno == 2:
-                os.rmdir(path)
-            else:
-                raise
+    os.chmod(path, stat.S_IWRITE)
+    try:
+        func(path)
+    except WinError as e:
+        os.rmdir(path)
 
 
 def rmtree(path):
