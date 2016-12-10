@@ -26,7 +26,10 @@ def force_delete(func, path, exc_info):
     """
 
     os.chmod(path, stat.S_IWRITE)
-    func(path)
+    try:
+        func(path)
+    except WinError as e:
+        os.rmdir(path)
 
 
 def rmtree(path):
