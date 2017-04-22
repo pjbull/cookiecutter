@@ -48,8 +48,8 @@ Did someone say features?
 
 * Cross-platform: Windows, Mac, and Linux are officially supported.
 
-* Works with Python 2.7, 3.3, 3.4, 3.5, and PyPy. *(But you don't have to know/write Python
-  code to use Cookiecutter.)*
+* Works with Python 2.7, 3.3, 3.4, 3.5, 3.6, and PyPy. *(But you don't have to
+  know/write Python code to use Cookiecutter.)*
 
 * Project templates can be in any programming language or markup format:
   Python, JavaScript, Ruby, CoffeeScript, RST, Markdown, CSS, HTML, you name
@@ -187,11 +187,15 @@ Categories of Cookiecutters
 `Python-Django`_ |
 `Python-Pyramid`_ |
 `Cookiecutter (meta)`_ |
+`Ansible`_ |
+`Git`_ |
 `C`_ |
 `C++`_ |
 `C#`_ |
 `Common Lisp`_ |
+`Elm`_ |
 `Golang`_ |
+`Java`_ |
 `JS`_ |
 `Kotlin`_ |
 `LaTeX/XeTeX`_ |
@@ -201,6 +205,7 @@ Categories of Cookiecutters
 `Scala`_ |
 `6502 Assembly`_ |
 `Data Science`_ |
+`Tornado`_ |
 `Reproducible Science`_
 
 If you don't find a cookiecutter that suits your needs here, please consider
@@ -299,6 +304,8 @@ Python
 * `cookiecutter-pypackage`_: `@audreyr`_'s ultimate Python package project
   template.
 * `cookiecutter-pipproject`_: Minimal package for pip-installable projects
+* `cookiecutter-pypackage-minimal`_: A minimal Python package template.
+* `cookiecutter-lux-python`_: A boilerplate Python project that aims to create Python package with a convenient Makefile-facility and additional helpers.
 * `cookiecutter-flask`_ : A Flask template with Bootstrap 3, starter templates, and working user registration.
 * `cookiecutter-flask-2`_: A heavier weight fork of cookiecutter-flask, with more boilerplate including forgotten password and Heroku integration
 * `cookiecutter-flask-foundation`_ : Flask Template with caching, forms, sqlalchemy and unit-testing.
@@ -308,8 +315,6 @@ Python
 * `cookiecutter-quokka-module`_: A template to create a blueprint module for Quokka Flask CMS.
 * `cookiecutter-kivy`_: A template for NUI applications built upon the kivy python-framework.
 * `cookiedozer`_: A template for Python Kivy apps ready to be deployed to android devices with Buildozer.
-* `cookiecutter-pypackage-minimal`_: A minimal Python package template.
-* `cookiecutter-ansible-role`_: A template to create ansible roles. Forget about file creation and focus on actions.
 * `cookiecutter-pylibrary`_: An intricate template designed to quickly get started with good testing and packaging (working configuration for Tox, Pytest, Travis-CI, Coveralls, AppVeyor, Sphinx docs, isort, bumpversion, packaging checks etc).
 * `cookiecutter-pyvanguard`_: A template for cutting edge Python development. `Invoke`_, pytest, bumpversion, and Python 2/3 compatability.
 * `Python-iOS-template`_: A template to create a Python project that will run on iOS devices.
@@ -328,10 +333,13 @@ Python
 * `cookiecutter-snakemake-analysis-pipeline`_: One way to easily set up `Snakemake`_-based analysis pipelines.
 * `cookiecutter-py3tkinter`_: Template for Python 3 Tkinter application gui.
 * `cookiecutter-pyqt5`_: A prebuilt PyQt5 GUI template with a fully featured Pytest test suite and Travis CI integration all in an optimal Python package.
+* `cookiecutter-pyqt4`_: A prebuilt PyQt4 GUI template with a logging support, structure for tests and separation of ui and worker components.
 * `cookiecutter-xontrib`_: A template for building xontribs, a.k.a `xonsh`_ contributions
 
 .. _`cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
 .. _`cookiecutter-pipproject`: https://github.com/wdm0006/cookiecutter-pipproject
+.. _`cookiecutter-pypackage-minimal`: https://github.com/kragniz/cookiecutter-pypackage-minimal
+.. _`cookiecutter-lux-python`: https://github.com/alexkey/cookiecutter-lux-python
 .. _`cookiecutter-flask`: https://github.com/sloria/cookiecutter-flask
 .. _`cookiecutter-flask-2`: https://github.com/wdm0006/cookiecutter-flask
 .. _`cookiecutter-flask-foundation`: https://github.com/JackStouffer/cookiecutter-Flask-Foundation
@@ -342,8 +350,6 @@ Python
 .. _`cookiecutter-quokka-module`: https://github.com/pythonhub/cookiecutter-quokka-module
 .. _`cookiecutter-kivy`: https://github.com/hackebrot/cookiecutter-kivy
 .. _`cookiedozer`: https://github.com/hackebrot/cookiedozer
-.. _`cookiecutter-pypackage-minimal`: https://github.com/kragniz/cookiecutter-pypackage-minimal
-.. _`cookiecutter-ansible-role`: https://github.com/iknite/cookiecutter-ansible-role
 .. _`cookiecutter-pylibrary`: https://github.com/ionelmc/cookiecutter-pylibrary
 .. _`cookiecutter-pyvanguard`: https://github.com/robinandeer/cookiecutter-pyvanguard
 .. _`Invoke`: http://docs.pyinvoke.org/en/latest/
@@ -369,6 +375,7 @@ Python
 .. _`Snakemake`: https://bitbucket.org/snakemake/snakemake/wiki/Home
 .. _`cookiecutter-py3tkinter`: https://github.com/ivanlyon/cookiecutter-py3tkinter
 .. _`cookiecutter-pyqt5`: https://github.com/mandeepbhutani/cookiecutter-pyqt5
+.. _`cookiecutter-pyqt4`: https://github.com/aeroaks/cookiecutter-pyqt4
 .. _`cookiecutter-xontrib`: https://github.com/laerus/cookiecutter-xontrib
 .. _`xonsh`: https://github.com/xonsh/xonsh
 
@@ -388,7 +395,7 @@ Python-Django
 * `cookiecutter-django-rest-framework`_: A template for creating reusable Django REST Framework packages.
 * `cookiecutter-django-aws-eb`_: Get up and running with Django on AWS Elastic Beanstalk.
 * `cookiecutter-wagtail`_ : A cookiecutter template for `Wagtail`_ CMS based sites.
-* `wagtail-cookiecutter-foundation`_: A complete template for Wagtail CMS projects featuring Zurb Foundation 5, ansible provisioning and deployment , front-end dependency management with bower, modular apps to get your site up and running including photo_gallery, RSS feed etc.
+* `wagtail-cookiecutter-foundation`_: A complete template for Wagtail CMS projects featuring `Zurb Foundation`_ 6, ansible provisioning and deployment , front-end dependency management with bower, modular apps to get your site up and running including photo_gallery, RSS feed etc.
 * `django-starter`_: A Django template complete with vagrant and provisioning scripts - inspired by 12 factor apps and cookiecutter-django.
 * `cookiecutter-django-gulp`_: A Cookiecutter template for integrating frontend development tools in Django projects.
 * `wagtail-starter-kit`_: A cookiecutter complete with wagtail, django layout, vagrant, provisioning scripts, front end build system and more!
@@ -398,6 +405,8 @@ Python-Django
 * `cc_project_app_drf`_: For creating REST apis based on the "project app" project architecture
 * `cc_project_app_full_with_hooks`_: For creating Django projects using the "project app" project architecture
 * `cc-automated-drf-template`_: A template + script that automatically creates your Django REST project with serializers, views, urls, and admin files based on your models file as input.
+* `cookiecutter-django-foundation`_: Fork of `cookiecutter-django`_ based on `Zurb Foundation`_ 6 front-end framework
+* `cookiecutter-django-ansible`_: Cookiecutter Django Ansible is a framework for jumpstarting an ansible project for provisioning a server that is ready for your *cookiecutter-django* application.
 
 .. _`cookiecutter-django`: https://github.com/pydanny/cookiecutter-django
 .. _`cookiecutter-django-rest`: https://github.com/agconti/cookiecutter-django-rest
@@ -422,20 +431,24 @@ Python-Django
 .. _`cc_project_app_drf`: https://bitbucket.org/levit_scs/cc_project_app_drf
 .. _`cc_project_app_full_with_hooks`: https://bitbucket.org/levit_scs/cc_project_app_full_with_hooks
 .. _`cc-automated-drf-template`: https://github.com/TAMU-CPT/cc-automated-drf-template
-
+.. _`cookiecutter-django-foundation`: https://github.com/Parbhat/cookiecutter-django-foundation
+.. _`Zurb Foundation`: http://foundation.zurb.com
+.. _`cookiecutter-django-ansible`: https://github.com/HackSoftware/cookiecutter-django-ansible
 
 Python-Pyramid
 ^^^^^^^^^^^^^^
 
-* `pyramid-cookiecutter-alchemy`_: A cookiecutter (project template) for creating a Pyramid project using SQLite as persistent storage, SQLAlchemy as an ORM, URL dispatch for routing, and Jinja2 for templating.
-* `pyramid-cookiecutter-starter`_: A cookiecutter (project template) for creating a Pyramid starter project using Chameleon for templating.
-* `pyramid-cookiecutter-zodb`_: A cookiecutter (project template) for creating a Pyramid project using ZODB for persistent storage, traversal for routing, and Chameleon for templating.
+* `pyramid-cookiecutter-alchemy`_: A Cookiecutter (project template) for creating a Pyramid project using SQLite for persistent storage, SQLAlchemy for an ORM, URL dispatch for routing, and Jinja2 for templating.
+* `pyramid-cookiecutter-starter`_: A Cookiecutter (project template) for creating a Pyramid starter project using URL dispatch for routing and either Jinja2, Chameleon, or Mako for templating.
+* `pyramid-cookiecutter-zodb`_: A Cookiecutter (project template) for creating a Pyramid project using ZODB for persistent storage, traversal for routing, and Chameleon for templating.
 * `substanced-cookiecutter`_: A cookiecutter (project template) for creating a Substance D starter project. Substance D is built on top of Pyramid.
+* `cookiecutter-pyramid-talk-python-starter`_: An opinionated Cookiecutter template for creating Pyramid web applications starting way further down the development chain. This cookiecutter template will create a new Pyramid web application with email, sqlalchemy, rollbar, and way more integrated.
 
 .. _`pyramid-cookiecutter-alchemy`: https://github.com/Pylons/pyramid-cookiecutter-alchemy
 .. _`pyramid-cookiecutter-starter`: https://github.com/Pylons/pyramid-cookiecutter-starter
 .. _`pyramid-cookiecutter-zodb`: https://github.com/Pylons/pyramid-cookiecutter-zodb
 .. _`substanced-cookiecutter`: https://github.com/Pylons/substanced-cookiecutter
+.. _`cookiecutter-pyramid-talk-python-starter`: https://github.com/mikeckennedy/cookiecutter-pyramid-talk-python-starter
 
 Cookiecutter (meta)
 ~~~~~~~~~~~~~~~~~~~
@@ -445,6 +458,22 @@ Meta-templates for generating Cookiecutter project templates.
 * `cookiecutter-template`_: A template to help in creating cookiecutter templates.
 
 .. _`cookiecutter-template`: https://github.com/eviweb/cookiecutter-template
+
+Ansible
+~~~~~~~
+
+* `cookiecutter-ansible-role`_: A template to create ansible roles. Forget about file creation and focus on actions.
+* `cookiecutter-ansible-role-ci`_: Create Ansible roles following best practices, with an already implemented test infrastructure leveraging Test-kitchen, Docker and InSpec.
+
+.. _`cookiecutter-ansible-role`: https://github.com/iknite/cookiecutter-ansible-role
+.. _`cookiecutter-ansible-role-ci`: https://github.com/ferrarimarco/cookiecutter-ansible-role
+
+Git
+~~~
+
+* `cookiecutter-git`_: Git Cookiecutter. A git repository project template!
+
+.. _`cookiecutter-git`: https://github.com/webevllc/cookiecutter-git
 
 
 C
@@ -463,10 +492,14 @@ C++
 * `BoilerplatePP`_: A simple cmake template with unit testing for projects written in C++.
 * `cookiecutter-dpf-effect`_: An audio plugin project template for the DISTRHO Plugin Framework (DPF)
 * `cookiecutter-dpf-audiotk`_: An audio plugin project template for the DISTRHO Plugin Framework (DPF) and the Audio Toolkit (ATK) DSP library
+* `cookiecutter-kata-gtest`_: A template for C++ test-driven development katas using the Google Test framework.
+* `cookiecutter-kata-cpputest`_: A template for C++ test-driven-development katas using the CppUTest framework.
 
 .. _`BoilerplatePP`: https://github.com/Paspartout/BoilerplatePP
 .. _cookiecutter-dpf-effect: https://github.com/SpotlightKid/cookiecutter-dpf-effect
 .. _cookiecutter-dpf-audiotk: https://github.com/SpotlightKid/cookiecutter-dpf-audiotk
+.. _cookiecutter-kata-gtest: https://github.com/13coders/cookiecutter-kata-gtest
+.. _cookiecutter-kata-cpputest: https://github.com/13coders/cookiecutter-kata-cpputest
 
 
 C#
@@ -484,13 +517,31 @@ Common Lisp
 
 .. _`cookiecutter-cl-project`: https://github.com/svetlyak40wt/cookiecutter-cl-project
 
+Elm
+~~~
+
+* `cookiecutter-elm`_: Elm based cookiecutter with basic html example.
+
+.. _`cookiecutter-elm`: https://github.com/m-x-k/cookiecutter-elm.git
+
 
 Golang
 ~~~~~~
 
-* `beat-generator`_: A template to create your own beat to ship data to Elasticsearch.
+* `cookiecutter-golang`_: A template to create new go based projects following best practices.
 
-.. _`beat-generator`: https://github.com/elastic/beat-generator
+.. _`cookiecutter-golang`: https://github.com/lacion/cookiecutter-golang
+
+Java
+~~~~
+
+* `cookiecutter-java`_: Cookiecutter for basic java application setup with gradle
+* `cookiecutter-spring-boot`_: Cookiecutter for standard java spring boot gradle application
+* `cookiecutter-android`_: Cookiecutter for Gradle-based Android projects
+
+.. _`cookiecutter-java`: https://github.com/m-x-k/cookiecutter-java.git
+.. _`cookiecutter-spring-boot`: https://github.com/m-x-k/cookiecutter-spring-boot.git
+.. _`cookiecutter-android`: https://github.com/alexfu/cookiecutter-android
 
 
 JS
@@ -506,6 +557,7 @@ JS
 * `cookiecutter-tampermonkey`_: A template for a TamperMonkey browser script.
 * `cookiecutter-es6-package`_: A template for writing node packages using ES6 via babel.
 * `cookiecutter-angular2`_: A template for modular angular2 with typescript apps.
+* `CICADA`_: A template + script that automatically creates list/detail controllers and partials for an AngularJS frontend to connect to a DRF backend. Works well with `cc-automated-drf-template <https://github.com/TAMU-CPT/cc-automated-drf-template>`__.
 
 .. _`cookiecutter-es6-boilerplate`: https://github.com/agconti/cookiecutter-es6-boilerplate
 .. _`cookiecutter-webpack`: https://github.com/hzdg/cookiecutter-webpack
@@ -515,7 +567,7 @@ JS
 .. _`cookiecutter-tampermonkey`: https://github.com/christabor/cookiecutter-tampermonkey
 .. _`cookiecutter-es6-package`: https://github.com/ratson/cookiecutter-es6-package
 .. _`cookiecutter-angular2`: https://github.com/matheuspoleza/cookiecutter-angular2
-
+.. _`CICADA`: https://github.com/TAMU-CPT/CICADA
 
 Kotlin
 ~~~~~~
@@ -584,8 +636,10 @@ Scala
 Data Science
 ~~~~~~~~~~~~
 
+* `widget-cookiecutter`_: A cookiecutter template for creating a custom Jupyter widget project.
 * `cookiecutter-data-science`_: A logical, reasonably standardized, but flexible project structure for doing and sharing data science work in Python.  Full documentation available `here <http://drivendata.github.io/cookiecutter-data-science/>`__.
 
+.. _`widget-cookiecutter`: https://github.com/jupyter/widget-cookiecutter
 .. _`cookiecutter-data-science`: https://github.com/drivendata/cookiecutter-data-science
 
 Reproducible Science
@@ -595,6 +649,19 @@ Reproducible Science
 
 .. _`cookiecutter-reproducible-science`: https://github.com/mkrapp/cookiecutter-reproducible-science
 
+Cloud Tools
+~~~~~~~~~~~~
+
+* `cookiecutter-tf-module`_: Cookiecutter template for building consistent Terraform modules.
+
+.. _`cookiecutter-tf-module`: https://github.com/DualSpark/cookiecutter-tf-module
+
+Tornado
+~~~~~~~
+
+* `cookiecutter-tornado`_: Cookiecutter template for Tornado based projects
+
+.. _`cookiecutter-tornado`: https://github.com/hkage/cookiecutter-tornado
 
 Similar projects
 ----------------

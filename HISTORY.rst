@@ -3,8 +3,111 @@
 History
 -------
 
-1.5.0 (2016-04-20) ???
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1.6.0 (????-??-??) ???????
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+New Features:
+
+* ???
+
+Bug Fixes:
+
+* ???
+
+Other Changes:
+
+* Fix broken link to *Copy without Render* docs, thanks to `@coreysnyder04`_
+  (#912)
+* Improve debug log message for when a hook is not found, thanks to
+  `@raphigaziano`_ (#160)
+* Fix module summary and ``expand_abbreviations()`` doc string as per pep257,
+  thanks to `@terryjbates`_ (#772)
+* Update doc strings in ``cookiecutter/cli.py`` and ``cookiecutter/config.py``
+  according to pep257, thanks to `@terryjbates`_ (#922, #931)
+* Fix miscellaneous issues with building docs, thanks to `@stevepiercy`_ (#889)
+* Added more cookiecutter templates to the mix:
+
+  * `cookiecutter-kata-cpputest`_ by `@13coders`_ (#901)
+  * `cookiecutter-kata-gtest`_ by `@13coders`_ (#901)
+  * `cookiecutter-pyramid-talk-python-starter`_ by `@mikeckennedy`_ (#915)
+  * `cookiecutter-android`_ by `@alexfu`_ (#890)
+  * `cookiecutter-lux-python`_ by `@alexkey`_ (#895)
+  * `cookiecutter-git`_ by `@tuxredux`_ (#921)
+  * `cookiecutter-ansible-role-ci`_ by `@ferrarimarco`_ (#903)
+
+.. _cookiecutter-kata-gtest: https://github.com/13coders/cookiecutter-kata-gtest
+.. _cookiecutter-kata-cpputest: https://github.com/13coders/cookiecutter-kata-cpputest
+.. _`cookiecutter-pyramid-talk-python-starter`: https://github.com/mikeckennedy/cookiecutter-pyramid-talk-python-starter
+.. _`cookiecutter-android`: https://github.com/alexfu/cookiecutter-android
+.. _`cookiecutter-lux-python`: https://github.com/alexkey/cookiecutter-lux-python
+.. _`cookiecutter-git`: https://github.com/webevllc/cookiecutter-git
+.. _`cookiecutter-ansible-role-ci`: https://github.com/ferrarimarco/cookiecutter-ansible-role
+
+.. _`@13coders`: https://github.com/13coders
+.. _`@coreysnyder04`: https://github.com/coreysnyder04
+.. _`@mikeckennedy`: https://github.com/mikeckennedy
+.. _`@alexfu`: https://github.com/alexfu
+.. _`@alexkey`: https://github.com/alexkey
+.. _`@tuxredux`: https://github.com/tuxredux
+.. _`@ferrarimarco`: https://github.com/ferrarimarco
+
+1.5.1 (2017-02-04) Alfajor
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+New Features:
+
+* Major update to installation documentation, thanks to `@stevepiercy`_ (#880)
+
+Bug Fixes:
+
+* Resolve an issue around default values for dict variables, thanks to
+  `@e-kolpakov`_ for raising the issue and `@hackebrot`_ for the PR (#882,
+  #884)
+
+Other Changes:
+
+* Contributor documentation reST fixes, thanks to `@stevepiercy`_ (#878)
+* Added more cookiecutter templates to the mix:
+
+  * `widget-cookiecutter`_ by `@willingc`_ (#781)
+  * `cookiecutter-django-foundation`_ by `@Parbhat`_ (#804)
+  * `cookiecutter-tornado`_ by `@hkage`_ (#807)
+  * `cookiecutter-django-ansible`_ by `@Ivaylo-Bachvarov`_ (#816)
+  * `CICADA`_ by `@elenimijalis`_ (#840)
+  * `cookiecutter-tf-module`_ by `@VDuda`_ (#843)
+  * `cookiecutter-pyqt4`_ by `@aeroaks`_ (#847)
+  * `cookiecutter-golang`_ by `@mjhea0`_ and `@lacion`_ (#872, #873)
+  * `cookiecutter-elm`_, `cookiecutter-java`_ and `cookiecutter-spring-boot`_ by `@m-x-k`_ (#879)
+
+.. _`@Parbhat`: https://github.com/Parbhat
+.. _`@hkage`: https://github.com/hkage
+.. _`@Ivaylo-Bachvarov`: https://github.com/Ivaylo-Bachvarov
+.. _`@elenimijalis`: https://github.com/elenimijalis
+.. _`@VDuda`: https://github.com/VDuda
+.. _`@aeroaks`: https://github.com/aeroaks
+.. _`@mjhea0`: https://github.com/mjhea0
+.. _`@lacion`: https://github.com/lacion
+.. _`@m-x-k`: https://github.com/m-x-k
+.. _`@e-kolpakov`: https://github.com/e-kolpakov
+
+.. _`widget-cookiecutter`: https://github.com/jupyter/widget-cookiecutter
+.. _`cookiecutter-django-foundation`: https://github.com/Parbhat/cookiecutter-django-foundation
+.. _`cookiecutter-tornado`: https://github.com/hkage/cookiecutter-tornado
+.. _`cookiecutter-django-ansible`: https://github.com/HackSoftware/cookiecutter-django-ansible
+.. _`CICADA`: https://github.com/TAMU-CPT/CICADA
+.. _`cookiecutter-tf-module`: https://github.com/DualSpark/cookiecutter-tf-module
+.. _`cookiecutter-pyqt4`: https://github.com/aeroaks/cookiecutter-pyqt4
+.. _`cookiecutter-golang`: https://github.com/lacion/cookiecutter-golang
+.. _`cookiecutter-elm`: https://github.com/m-x-k/cookiecutter-elm.git
+.. _`cookiecutter-java`: https://github.com/m-x-k/cookiecutter-java.git
+.. _`cookiecutter-spring-boot`: https://github.com/m-x-k/cookiecutter-spring-boot.git
+
+
+1.5.0 (2016-12-18) Alfajor
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The primary goal of this release was to add command-line support for passing
+extra context, address minor bugs and make a number of improvements.
 
 New Features:
 
@@ -24,7 +127,9 @@ New Features:
   ``~/.cookiecutters/``) can now be referenced by directory name, thanks to
   `@michaeljoseph`_ (#825).
 * Add support for dict values in ``cookiecutter.json``, thanks to
-  `@freakboy3742`_ (#815).
+  `@freakboy3742`_ and `@hackebrot`_ (#815, #858).
+* Add a ``jsonify`` filter to default jinja2 extensions that json.dumps a
+  Python object into a string, thanks to `@aroig`_ (#791).
 
 Bug Fixes:
 
@@ -36,6 +141,12 @@ Bug Fixes:
 * Ignore hook files with tilde-suffixes, thanks to `@hackebrot`_ (#768)
 * Fix a minor issue with the code that generates a name for a template, thanks
   to `@hackebrot`_ (#798)
+* Handle empty hook file or other OS errors, thanks to `@christianmlong`_ for
+  raising this bug and `@jcarbaugh`_ and `@hackebrot`_ for the fix (#632, #729,
+  #862)
+* Resolve an issue with custom extensions not being loaded for
+  ``pre_gen_project`` and ``post_gen_project`` hooks, thanks to `@cheungnj`_
+  (#860)
 
 Other Changes:
 
@@ -112,6 +223,10 @@ Other Changes:
   `@michaeljoseph`_ (#834)
 * Add tests for custom extensions in ``pre_gen_project`` and
   ``post_gen_project`` hooks, thanks to `@hackebrot`_ (#856)
+* Make the build reproducible by avoiding nondeterministic keyword arguments,
+  thanks to `@lamby`_ and `@hackebrot`_ (#800, #861)
+* Extend CLI help message and point users to the github project to engage with
+  the community, thanks to `@hackebrot`_ (#859)
 * Added more cookiecutter templates to the mix:
 
   * `cookiecutter-funkload-friendly`_ by `@tokibito`_ (#657)
@@ -144,7 +259,7 @@ Other Changes:
   * `cookiecutter-pyqt5`_ by `@mandeepbhutani`_ (#797)
   * `cookiecutter-xontrib`_ by `@laerus`_ (#817)
   * `cookiecutter-reproducible-science`_ by `@mkrapp`_ (#826)
-  * `cc-automated-drf-template`_ by `@TAMU-CPT`_ (#832)
+  * `cc-automated-drf-template`_ by `@elenimijalis`_ (#832)
 
 .. _`@keimlink`: https://github.com/keimlink
 .. _`@luzfcb`: https://github.com/luzfcb
@@ -189,8 +304,13 @@ Other Changes:
 .. _`@B3QL`: https://github.com/B3QL
 .. _`@laerus`: https://github.com/laerus
 .. _`@mkrapp`: https://github.com/mkrapp
-.. _`@TAMU-CPT`: https://github.com/TAMU-CPT
+.. _`@elenimijalis`: https://github.com/elenimijalis
 .. _`@andytom`: https://github.com/andytom
+.. _`@lamby`: https://github.com/lamby
+.. _`@christianmlong`: https://github.com/christianmlong
+.. _`@jcarbaugh`: https://github.com/jcarbaugh
+.. _`@cheungnj`: https://github.com/cheungnj
+.. _`@aroig`: https://github.com/aroig
 
 .. _`cookiecutter-pyqt5`: https://github.com/mandeepbhutani/cookiecutter-pyqt5
 .. _`cookiecutter-funkload-friendly`: https://github.com/tokibito/cookiecutter-funkload-friendly

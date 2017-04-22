@@ -2,6 +2,7 @@
 
 """Functions for discovering and executing various cookiecutter hooks."""
 
+import errno
 import io
 import logging
 import os
@@ -9,9 +10,8 @@ import subprocess
 import sys
 import tempfile
 
-from jinja2 import Template
-
 from cookiecutter import utils
+from cookiecutter.environment import StrictEnvironment
 from .exceptions import FailedHookException
 
 logger = logging.getLogger(__name__)
@@ -79,15 +79,26 @@ def run_script(script_path, cwd='.'):
 
     utils.make_executable(script_path)
 
-    proc = subprocess.Popen(
-        script_command,
-        shell=run_thru_shell,
-        cwd=cwd
-    )
-    exit_status = proc.wait()
-    if exit_status != EXIT_SUCCESS:
+    try:
+        proc = subprocess.Popen(
+            script_command,
+            shell=run_thru_shell,
+            cwd=cwd
+        )
+        exit_status = proc.wait()
+        if exit_status != EXIT_SUCCESS:
+            raise FailedHookException(
+                'Hook script failed (exit status: {})'.format(exit_status)
+            )
+    except OSError as os_error:
+        if os_error.errno == errno.ENOEXEC:
+            raise FailedHookException(
+                'Hook script failed, might be an '
+                'empty file or missing a shebang'
+            )
         raise FailedHookException(
-            "Hook script failed (exit status: %d)" % exit_status)
+            'Hook script failed (error: {})'.format(os_error)
+        )
 
 
 def run_script_with_context(script_path, cwd, context):
@@ -106,7 +117,12 @@ def run_script_with_context(script_path, cwd, context):
         mode='wb',
         suffix=extension
     ) as temp:
-        output = Template(contents).render(**context)
+        env = StrictEnvironment(
+            context=context,
+            keep_trailing_newline=True,
+        )
+        template = env.from_string(contents)
+        output = template.render(**context)
         temp.write(output.encode('utf-8'))
 
     run_script(temp.name, cwd)
@@ -122,7 +138,7 @@ def run_hook(hook_name, project_dir, context):
     """
     script = find_hook(hook_name)
     if script is None:
-        logger.debug('No hooks found')
+        logger.debug('No {} hook found'.format(hook_name))
         return
     logger.debug('Running hook {}'.format(hook_name))
     run_script_with_context(script, project_dir, context)
