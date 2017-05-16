@@ -37,7 +37,7 @@ templates), e.g. creating a Python package project from a Python package project
 * Free software: BSD license
 * PyPI: https://pypi.python.org/pypi/cookiecutter
 
-.. image:: https://raw.github.com/audreyr/cookiecutter/aa309b73bdc974788ba265d843a65bb94c2e608e/cookiecutter_medium.png
+.. image:: https://raw.github.com/audreyr/cookiecutter/3ac078356adf5a1a72042dfe72ebfa4a9cd5ef38/logo/cookiecutter_medium.png
 
 We are proud to be an open source sponsor of `PyCon 2016`_.
 
@@ -274,13 +274,13 @@ Waiting for a response to an issue/question?
 Support This Project
 --------------------
 
-This project is maintained by volunteers. Support their efforts by spreading the word about:
+This project is maintained by volunteers. Support their efforts by spreading the word about Two Scoops of Django 1.11:
 
-.. image:: https://s3.amazonaws.com/tsacademy/images/tsa-logo-250x60-transparent-01.png
-   :name: Two Scoops Academy
+.. image:: https://cdn.shopify.com/s/files/1/0304/6901/files/tsd-111-alpha-470x235.jpg?11350964796982104043
+   :name: Two Scoops Press
    :align: center
-   :alt: Two Scoops Academy
-   :target: http://www.twoscoops.academy/
+   :alt: Two Scoops Press
+   :target: https://www.twoscoopspress.com/products/two-scoops-of-django-1-11
 
 Code of Conduct
 ---------------
@@ -391,7 +391,7 @@ Python-Django
 * `cookiecutter-django-cms`_: A template for Django CMS with simple Bootstrap 3 template. It has a quick start and deploy documentation.
 * `cookiecutter-django-crud`_: A template to create a Django app with boilerplate CRUD around a model including a factory and tests.
 * `cookiecutter-django-lborgav`_: Another cookiecutter template for Django project with Booststrap 3 and FontAwesome 4
-* `cookiecutter-django-paas`_: Django template ready to use in SAAS platforms like Heroku, OpenShift, etc..
+* `cookiecutter-django-paas`_: Django template ready to use in PAAS platforms like Heroku, OpenShift, etc..
 * `cookiecutter-django-rest-framework`_: A template for creating reusable Django REST Framework packages.
 * `cookiecutter-django-aws-eb`_: Get up and running with Django on AWS Elastic Beanstalk.
 * `cookiecutter-wagtail`_ : A cookiecutter template for `Wagtail`_ CMS based sites.
@@ -638,9 +638,11 @@ Data Science
 
 * `widget-cookiecutter`_: A cookiecutter template for creating a custom Jupyter widget project.
 * `cookiecutter-data-science`_: A logical, reasonably standardized, but flexible project structure for doing and sharing data science work in Python.  Full documentation available `here <http://drivendata.github.io/cookiecutter-data-science/>`__.
+* `cookiecutter-r-data-analysis`_: Template for a R based workflow to docx (via Pandoc) and pdf (via LaTeX) reports.
 
 .. _`widget-cookiecutter`: https://github.com/jupyter/widget-cookiecutter
 .. _`cookiecutter-data-science`: https://github.com/drivendata/cookiecutter-data-science
+.. _`cookiecutter-r-data-analysis`: https://github.com/bdcaf/cookiecutter-r-data-analysis
 
 Reproducible Science
 ~~~~~~~~~~~~~~~~~~~~
@@ -662,6 +664,13 @@ Tornado
 * `cookiecutter-tornado`_: Cookiecutter template for Tornado based projects
 
 .. _`cookiecutter-tornado`: https://github.com/hkage/cookiecutter-tornado
+
+Other
+~~~~~
+
+* `cookiecutter_dotfile`_: Template for a folder of dotfiles managed by stow.
+
+.. _`cookiecutter_dotfile`: https://github.com/bdcaf/cookiecutter_dotfile
 
 Similar projects
 ----------------

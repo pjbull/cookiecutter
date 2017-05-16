@@ -108,6 +108,8 @@ Contributors
 * Steve Piercy (`@stevepiercy`_)
 * Corey (`@coreysnyder04`_)
 * Peter Bull (`@pjbull`_)
+* Dmitry Evstratov (`@devstrat`_)
+* Eyal Levin (`@eyalev`_)
 
 .. _`@cedk`: https://github.com/cedk
 .. _`@johtso`: https://github.com/johtso
@@ -204,4 +206,5 @@ Contributors
 .. _`@stevepiercy`: https://github.com/stevepiercy
 .. _`@coreysnyder04`: https://github.com/coreysnyder04
 .. _`@pjbull`: https://github.com/pjbull
-
+.. _`@devstrat`: https://github.com/devstrat
+.. _`@eyalev`: https://github.com/eyalev
