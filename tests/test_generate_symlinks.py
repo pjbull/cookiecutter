@@ -118,7 +118,7 @@ def test_symlinks():
                     reason='No symlinks on Windows + Python < 3.2')
 @pytest.mark.usefixtures('clean_system', 'remove_test_dir')
 def test_generate_symlinks_fail_unsupported():
-    with pytest.raises(NoSymlinksOnWindowsPythonBefore32) as e:
+    with pytest.raises(NoSymlinksOnWindowsPythonBefore32):
         generate.generate_files(
             context={
                 'cookiecutter': {
