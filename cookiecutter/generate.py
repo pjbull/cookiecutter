@@ -9,6 +9,7 @@ import json
 import logging
 import os
 import shutil
+import sys
 
 from jinja2 import FileSystemLoader
 from cookiecutter.environment import StrictEnvironment
@@ -20,13 +21,29 @@ from .exceptions import (
     ContextDecodingException,
     FailedHookException,
     OutputDirExistsException,
-    UndefinedVariableInTemplate
+    UndefinedVariableInTemplate,
+    NoSymlinksOnWindowsPythonBefore32
 )
 from .find import find_template
 from .utils import make_sure_path_exists, work_in, rmtree
 from .hooks import run_hook
 
 logger = logging.getLogger(__name__)
+
+
+WIN_BEFORE_PY32 = sys.platform.startswith('win') and sys.version_info < (3, 2)
+
+if WIN_BEFORE_PY32:
+    from jaraco.windows.filesystem import islink
+
+    def _patched_link(*args, **kwargs):
+        if islink(*args, **kwargs):
+            raise NoSymlinksOnWindowsPythonBefore32(
+                "Symlinks not supported on Windows before Python 3.2."
+            )
+        return False
+
+    os.path.islink = _patched_link
 
 
 def is_copy_only_path(path, context):

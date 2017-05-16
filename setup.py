@@ -29,7 +29,8 @@ requirements = [
     'click>=5.0',
     'whichcraft>=0.4.0',
     'poyo>=0.1.0',
-    'jinja2-time>=0.1.0'
+    'jinja2-time>=0.1.0',
+    'jaraco.windows>=3.7.0'
 ]
 
 if sys.argv[-1] == 'readme':

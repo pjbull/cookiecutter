@@ -117,3 +117,10 @@ class RepositoryNotFound(CookiecutterException):
 
 class RepositoryCloneFailed(CookiecutterException):
     """Raised when a cookiecutter template can't be cloned."""
+
+
+class NoSymlinksOnWindowsPythonBefore32(CookiecutterException):
+    """
+    Raised when a symlink appears on Windows with Python<3.2,
+    which is not supported
+    """
