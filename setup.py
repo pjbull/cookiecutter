@@ -7,7 +7,7 @@ import sys
 
 from setuptools import setup
 
-version = "1.5.1"
+version = "1.6.0"
 
 if sys.argv[-1] == 'publish':
     os.system('python setup.py sdist upload')
@@ -30,7 +30,8 @@ requirements = [
     'whichcraft>=0.4.0',
     'poyo>=0.1.0',
     'jinja2-time>=0.1.0',
-    'jaraco.windows>=3.7.0'
+    'jaraco.windows>=3.7.0',
+    'requests>=2.18.0',
 ]
 
 if sys.argv[-1] == 'readme':

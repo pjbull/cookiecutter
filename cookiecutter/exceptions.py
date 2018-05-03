@@ -124,3 +124,10 @@ class NoSymlinksOnWindowsPythonBefore32(CookiecutterException):
     Raised when a symlink appears on Windows with Python<3.2,
     which is not supported
     """
+
+
+class InvalidZipRepository(CookiecutterException):
+    """
+    Raised when the specified cookiecutter repository isn't a valid
+    Zip archive.
+    """
